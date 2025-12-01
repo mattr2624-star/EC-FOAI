@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+        cache: 'pip'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    
+    - name: Check Python syntax
+      run: |
+        python -m py_compile app.py
+        python -m py_compile portfolio.py
+        python -m py_compile roi_engine.py
+        python -m py_compile agents/interview_agent.py
+        python -m py_compile calculators/roi_calculator.py
+        python -m py_compile exporters/canvas_exporter.py
+        python -m py_compile generators/roadmap_generator.py
+        python -m py_compile models/data_models.py
+        python -m py_compile optimizers/portfolio_optimizer.py
+    
+    - name: Verify imports
+      run: |
+        python -c "from agents.interview_agent import *"
+        python -c "from calculators.roi_calculator import *"
+        python -c "from models.data_models import *"
+        python -c "from generators.roadmap_generator import *"
+        python -c "from optimizers.portfolio_optimizer import *"
+
