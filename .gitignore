@@ -1,13 +1,12 @@
-# Python
+# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
-*.so
-.Python
-env/
+
+# Virtual environments
 venv/
-.venv/
-ENV/
+env/
+.env
 
 # IDE
 .idea/
@@ -15,15 +14,9 @@ ENV/
 *.swp
 *.swo
 
-# Environment
-.env
-.env.local
-
-# OS
+# OS files
 .DS_Store
 Thumbs.db
 
-# Project specific
+# Logs
 *.log
-exports/
-
